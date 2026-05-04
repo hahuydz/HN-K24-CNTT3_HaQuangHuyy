@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Game Item</title>
+</head>
+<body>
+
+<h1>Danh sách vật phẩm</h1>
+
+<form method="get" th:action="@{/game-item}">
+
+    <input type="text"
+           name="keyword"
+           placeholder="Nhập tên item"
+           th:value="${keyword}">
+
+    <select name="rarityId">
+        <option value="">-- Chọn độ hiếm --</option>
+
+        <option th:each="r : ${rarities}"
+                th:value="${r.id}"
+                th:text="${r.name}"
+                th:selected="${rarityId == r.id}">
+        </option>
+    </select>
+
+    <button type="submit">Search</button>
+</form>
+
+<a th:href="@{/game-item/add}">Thêm vật phẩm</a>
+
+<table border="1">
+
+    <tr>
+        <th>ID</th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Game</th>
+        <th>Price</th>
+        <th>Rarity</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="g : ${gameItems.content}">
+
+        <td th:text="${g.id}"></td>
+
+        <td>
+            <img th:src="@{'/uploads/' + ${g.itemImage}}"
+                 width="100">
+        </td>
+
+        <td th:text="${g.itemName}"></td>
+        <td th:text="${g.gameTitle}"></td>
+        <td th:text="${g.marketPrice}"></td>
+
+        <td>
+            <span th:if="${g.rarity != null}"
+                  th:text="${g.rarity.name}">
+            </span>
+
+            <span th:if="${g.rarity == null}">
+                Chưa phân loại
+            </span>
+        </td>
+
+        <td>
+            <a th:href="@{/game-item/edit/{id}(id=${g.id})}">Edit</a>
+
+</html>

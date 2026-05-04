@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Game Item</title>
+</head>
+<body>
+
+<form th:action="@{/game-item/save}"
+      th:object="${gameItem}"
+      method="post"
+      enctype="multipart/form-data">
+
+    <div>
+        <label>Item Name</label>
+        <input type="text" th:field="*{itemName}">
+
+        <p style="color:red"
+           th:errors="*{itemName}">
+        </p>
+    </div>
+
+    <div>
+        <label>Game Title</label>
+        <input type="text" th:field="*{gameTitle}">
+
+        <p style="color:red"
+           th:errors="*{gameTitle}">
+        </p>
+    </div>
+
+    <div>
+        <label>Price</label>
+        <input type="number" step="0.1" th:field="*{marketPrice}">
+    </div>
+
+    <div>
+        <label>Drop Date</label>
+        <input type="date" th:field="*{dropDate}">
+
+        <p style="color:red"
+           th:errors="*{dropDate}">
+        </p>
+    </div>
+
+    <div>
+        <label>Tradeable</label>
+        <input type="checkbox" th:field="*{isTradeable}">
+    </div>
+
+    <div>
+        <label>Rarity</label>
+
+        <select th:field="*{rarity}">
+            <option th:each="r : ${rarities}"
+                    th:value="${r.id}"
+                    th:text="${r.name}">
+            </option>
+        </select>
+    </div>
+
+    <div>
+</html>

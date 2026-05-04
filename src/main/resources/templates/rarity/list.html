@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rarity</title>
+</head>
+<body>
+
+<h1>Danh sách độ hiếm</h1>
+
+<a th:href="@{/rarity/add}">Thêm mới</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Drop Rate</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="r : ${list}">
+        <td th:text="${r.id}"></td>
+        <td th:text="${r.name}"></td>
+        <td th:text="${r.dropRate}"></td>
+        <td>
+            <a th:href="@{/rarity/edit/{id}(id=${r.id})}">Edit</a>
+
+            <a th:href="@{/rarity/delete/{id}(id=${r.id})}"
+               onclick="return confirm('Bạn có chắc muốn xóa?')">
+                Delete
+            </a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>l>
