@@ -1,10 +1,10 @@
-package com.example.virtualasset;
+package com.example.canteen;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class VirtualassetApplicationTests {
+class CanteenApplicationTests {
 
     @Test
     void contextLoads() {
